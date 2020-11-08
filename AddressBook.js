@@ -81,7 +81,7 @@ let addressBook = [
 ];
 
 
-
+//UC3 Add Multiple Contacts
 addressBook.push(
     new Contact(
       "Aditi",
@@ -95,3 +95,8 @@ addressBook.push(
     )
   );
   console.log(addressBook);
+
+  //UC4 Edit Contact
+  addressBook.find((contact) => contact.firstName == "Aditi").firstName =
+  "Rani";
+console.log(addressBook);
