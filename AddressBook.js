@@ -108,3 +108,11 @@ console.log(addressBook);
 addressBook = addressBook.filter((contact) => contact.firstName !== "Arjun");
 console.log("UC5:Delete Contact");
 console.log(addressBook);
+
+//UC6 Count Contact
+function counter(count) {
+    return ++count;
+  }
+  numbersOfContact = addressBook.reduce(counter, 0);
+  console.log("UC6:Contact Count");
+  console.log("Number of contacts: " + numbersOfContact);
