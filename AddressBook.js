@@ -182,4 +182,17 @@ function counter(count) {
   }
   console.log(addressBook);
 
+  //UC8 Search By City or State
+  function searchByCity(addressBook, city) {
+    return addressBook.filter((contact) => contact.city === city);
+  }
+  
+  function searchByState(addressBook, state) {
+    return addressBook.filter((contact) => contact.state === state);
+  }
+  let arjun=searchByCity(addressBook, "Bhopal");
+  
+  console.log("~~~~~"+arjun);
+  console.log("~~~~"+searchByState(addressBook, "Maharashtra"));
+
 
