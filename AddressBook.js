@@ -80,4 +80,18 @@ let addressBook = [
   ),
 ];
 
-console.log(addressBook);
+
+
+addressBook.push(
+    new Contact(
+      "Aditi",
+      "Sharma",
+      "56/A Mannat Complex",
+      "Pune",
+      "Maharashtra",
+      "412000",
+      "8282828282",
+      "aditi@gmail.com"
+    )
+  );
+  console.log(addressBook);
