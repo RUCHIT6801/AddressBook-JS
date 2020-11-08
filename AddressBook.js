@@ -196,6 +196,7 @@ function counter(count) {
   console.log(searchByState(addressBook, "Maharashtra"));
 
   //UC9 View By City or State
+  console.log("UC:9~~Count by City or State")
   function viewByCity(addressBook) {
     let contactsByCity = new Map();
     addressBook.filter((contact) =>
@@ -216,5 +217,19 @@ function counter(count) {
   
   console.log(viewByCity(addressBook));
   console.log(viewByState(addressBook));
+
+//UC10 Count By City or State
+console.log("UC10 :Count by City or State")
+  let countByCity = new Map();
+viewByCity(addressBook).forEach((value, key) =>
+  countByCity.set(key, value.length)
+);
+console.log(countByCity);
+
+let countByState = new Map();
+viewByState(addressBook).forEach((value, key) =>
+  countByState.set(key, value.length)
+);
+console.log(countByState);
 
 
