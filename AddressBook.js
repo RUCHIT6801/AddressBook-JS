@@ -190,9 +190,31 @@ function counter(count) {
   function searchByState(addressBook, state) {
     return addressBook.filter((contact) => contact.state === state);
   }
-  let arjun=searchByCity(addressBook, "Bhopal");
   
-  console.log("~~~~~"+arjun);
-  console.log("~~~~"+searchByState(addressBook, "Maharashtra"));
+  console.log("UC8:Search by City or State")
+  console.log(searchByCity(addressBook, "Bhopal"));
+  console.log(searchByState(addressBook, "Maharashtra"));
+
+  //UC9 View By City or State
+  function viewByCity(addressBook) {
+    let contactsByCity = new Map();
+    addressBook.filter((contact) =>
+      contactsByCity.set(contact.city, searchByCity(addressBook, contact.city))
+    );
+    return contactsByCity;
+  }
+  function viewByState(addressBook) {
+    let contactsByState = new Map();
+    addressBook.filter((contact) =>
+      contactsByState.set(
+        contact.state,
+        searchByState(addressBook, contact.state)
+      )
+    );
+    return contactsByState;
+  }
+  
+  console.log(viewByCity(addressBook));
+  console.log(viewByState(addressBook));
 
 
