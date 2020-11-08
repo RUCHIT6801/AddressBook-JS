@@ -94,9 +94,17 @@ addressBook.push(
       "aditi@gmail.com"
     )
   );
+  console.log("UC3:Add Contact");
   console.log(addressBook);
-
+  
   //UC4 Edit Contact
-  addressBook.find((contact) => contact.firstName == "Aditi").firstName =
+addressBook.find((contact) => contact.firstName == "Aditi").firstName =
   "Rani";
+console.log("UC4:Edit Contact")  
+console.log(addressBook);
+
+
+//UC5 Delete Contact
+addressBook = addressBook.filter((contact) => contact.firstName !== "Arjun");
+console.log("UC5:Delete Contact");
 console.log(addressBook);
