@@ -232,4 +232,9 @@ viewByState(addressBook).forEach((value, key) =>
 );
 console.log(countByState);
 
+addressBook.sort((a, b) =>
+  (a.firstName + " " + a.lastName).localeCompare(b.firstName + " " + b.lastName)
+);
+console.log("!!!!!!!!"+addressBook);
+
 
