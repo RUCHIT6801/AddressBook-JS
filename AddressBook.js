@@ -14,56 +14,74 @@ class Contact {
     return this._firstName;
   }
   set firstName(firstName) {
-    this._firstName = firstName;
+    const nameRegex = RegExp("^[A-Z]{1}[a-z]{2,}$");
+    if (nameRegex.test(firstName)) this._firstName = firstName;
+    else throw "Given first name is in wrong format";
   }
 
   get lastName() {
     return this._lastName;
   }
   set lastName(lastName) {
-    this._lastName = lastName;
+    const nameRegex = RegExp("^[A-Z]{1}[a-z]{2,}$");
+    if (nameRegex.test(lastName)) this._lastName = lastName;
+    else throw "Givenl ast name is in wrong format";
   }
 
   get address() {
     return this._address;
   }
   set address(address) {
-    this._address = address;
+    const nameRegex = RegExp("^[A-Za-z0-9/,]{4,}$");
+    if (nameRegex.test(address)) this._address = address;
+    else throw "Given address is in wrong format";
   }
 
   get city() {
     return this._city;
   }
   set city(city) {
-    this._city = city;
+    const nameRegex = RegExp("^[A-Z]{1}[a-z]{3,}$");
+    if (nameRegex.test(city)) this._city = city;
+    else throw "Given city is in wrong format";
   }
 
   get state() {
     return this._state;
   }
   set state(state) {
-    this._state = state;
+    const nameRegex = RegExp("^[A-Z]{1}[A-Za-z\\s]{3,}$");
+    if (nameRegex.test(state)) this._state = state;
+    else throw "Given state is in wrong format";
   }
 
   get zip() {
     return this._zip;
   }
   set zip(zip) {
-    this._zip = zip;
+    const zipRegex = RegExp("^[0-9]{3}\\s?[0-9]{3}$");
+    if (zipRegex.test(zip)) this._zip = zip;
+    else throw "Given zip is in wrong format";
   }
 
   get phoneNo() {
     return this._phoneNo;
   }
   set phoneNo(phoneNo) {
-    this._phoneNo = phoneNo;
+    const phoneNoRegex = RegExp("^[0-9]{5}\\s?[0-9]{5}$");
+    if (phoneNoRegex.test(phoneNo)) this._phoneNo = phoneNo;
+    else throw "Given zip is in wrong format";
   }
 
   get email() {
     return this._email;
   }
   set email(email) {
-    this._email = email;
+    const emailRegex = RegExp(
+      "^[a-z][0-9a-z_+-]*\\.?[0-9a-z_+-]+@\\w+(\\.[a-z]{2,}){1,2}$"
+    );
+    if (emailRegex.test(email)) this._email = email;
+    else throw "Given email is in wrong format";
   }
 }
 
@@ -83,24 +101,24 @@ let addressBook = [
 
 //UC3 Add Multiple Contacts
 addressBook.push(
-    new Contact(
-      "Aditi",
-      "Sharma",
-      "56/A Mannat Complex",
-      "Pune",
-      "Maharashtra",
-      "412000",
-      "8282828282",
-      "aditi@gmail.com"
-    )
-  );
-  console.log("UC3:Add Contact");
-  console.log(addressBook);
-  
-  //UC4 Edit Contact
+  new Contact(
+    "Aditi",
+    "Sharma",
+    "56/A Mannat Complex",
+    "Pune",
+    "Maharashtra",
+    "412000",
+    "8282828282",
+    "aditi@gmail.com"
+  )
+);
+console.log("UC3:Add Contact");
+console.log(addressBook);
+
+//UC4 Edit Contact
 addressBook.find((contact) => contact.firstName == "Aditi").firstName =
   "Rani";
-console.log("UC4:Edit Contact")  
+console.log("UC4:Edit Contact")
 console.log(addressBook);
 
 
@@ -111,116 +129,116 @@ console.log(addressBook);
 
 //UC6 Count Contact
 function counter(count) {
-    return ++count;
-  }
-  numbersOfContact = addressBook.reduce(counter, 0);
-  console.log("UC6:Contact Count");
-  console.log("Number of contacts: " + numbersOfContact);
+  return ++count;
+}
+numbersOfContact = addressBook.reduce(counter, 0);
+console.log("UC6:Contact Count");
+console.log("Number of contacts: " + numbersOfContact);
 
-  //UC7 Delete Duplicate Contacts on the basis of First Name
+//UC7 Delete Duplicate Contacts on the basis of First Name
 
-  //Add Duplicate Contact
-  addressBook.push(
-    new Contact(
-      "Rani",
-      "Sharma",
-      "56/A Mannat Complex",
-      "Pune",
-      "Maharashtra",
-      "412000",
-      "8282828282",
-      "aditi@gmail.com"
-    )
-  );
-
- 
-  console.log("UC7:Don't allow duplicate contact while adding")
-
-  function addNewContact(addressBook, newContact) {
-    if (
-      addressBook.find(
-        (contact) =>
-          contact.firstName === newContact.firstName &&
-          contact.lastName === newContact.lastName
-      ) === undefined
-    )
-      addressBook.push(newContact);
-    else throw "Contact with same name already exists";
-  }
-
-  //Check for duplicate contact
-  let newContact = new Contact(
+//Add Duplicate Contact
+addressBook.push(
+  new Contact(
     "Rani",
     "Sharma",
-    "Kolapur",
-    "Mumbai",
+    "56/A Mannat Complex",
+    "Pune",
     "Maharashtra",
-    "401401",
-    "9595959595",
-    "adi@gmail.com"
-  );
-  try {
-    addNewContact(addressBook, newContact);
-  } catch (e) {
-    console.error(e);
-  }
-  //Check for new contact
-  let contact2=new Contact(
-    "Arjun",
-    "Gupta",
-    "Ayodhya Bypass",
-    "Bhopal",
-    "Madhya Pradesh",
-    "462041",
-    "8824347236",
-    "arjun17697@gmail.com"
-  );
-  try {
-    addNewContact(addressBook, contact2);
-  } catch (e) {
-    console.error(e);
-  }
-  console.log(addressBook);
+    "412000",
+    "8282828282",
+    "aditi@gmail.com"
+  )
+);
 
-  //UC8 Search By City or State
-  function searchByCity(addressBook, city) {
-    return addressBook.filter((contact) => contact.city === city);
-  }
-  
-  function searchByState(addressBook, state) {
-    return addressBook.filter((contact) => contact.state === state);
-  }
-  
-  console.log("UC8:Search by City or State")
-  console.log(searchByCity(addressBook, "Bhopal"));
-  console.log(searchByState(addressBook, "Maharashtra"));
 
-  //UC9 View By City or State
-  console.log("UC:9~~Count by City or State")
-  function viewByCity(addressBook) {
-    let contactsByCity = new Map();
-    addressBook.filter((contact) =>
-      contactsByCity.set(contact.city, searchByCity(addressBook, contact.city))
-    );
-    return contactsByCity;
-  }
-  function viewByState(addressBook) {
-    let contactsByState = new Map();
-    addressBook.filter((contact) =>
-      contactsByState.set(
-        contact.state,
-        searchByState(addressBook, contact.state)
-      )
-    );
-    return contactsByState;
-  }
-  
-  console.log(viewByCity(addressBook));
-  console.log(viewByState(addressBook));
+console.log("UC7:Don't allow duplicate contact while adding")
+
+function addNewContact(addressBook, newContact) {
+  if (
+    addressBook.find(
+      (contact) =>
+        contact.firstName === newContact.firstName &&
+        contact.lastName === newContact.lastName
+    ) === undefined
+  )
+    addressBook.push(newContact);
+  else throw "Contact with same name already exists";
+}
+
+//Check for duplicate contact
+let newContact = new Contact(
+  "Rani",
+  "Sharma",
+  "Kolapur",
+  "Mumbai",
+  "Maharashtra",
+  "401401",
+  "9595959595",
+  "adi@gmail.com"
+);
+try {
+  addNewContact(addressBook, newContact);
+} catch (e) {
+  console.error(e);
+}
+//Check for new contact
+let contact2 = new Contact(
+  "Arjun",
+  "Gupta",
+  "Ayodhya Bypass",
+  "Bhopal",
+  "Madhya Pradesh",
+  "462041",
+  "8824347236",
+  "arjun17697@gmail.com"
+);
+try {
+  addNewContact(addressBook, contact2);
+} catch (e) {
+  console.error(e);
+}
+console.log(addressBook);
+
+//UC8 Search By City or State
+function searchByCity(addressBook, city) {
+  return addressBook.filter((contact) => contact.city === city);
+}
+
+function searchByState(addressBook, state) {
+  return addressBook.filter((contact) => contact.state === state);
+}
+
+console.log("UC8:Search by City or State")
+console.log(searchByCity(addressBook, "Bhopal"));
+console.log(searchByState(addressBook, "Maharashtra"));
+
+//UC9 View By City or State
+console.log("UC:9~~Count by City or State")
+function viewByCity(addressBook) {
+  let contactsByCity = new Map();
+  addressBook.filter((contact) =>
+    contactsByCity.set(contact.city, searchByCity(addressBook, contact.city))
+  );
+  return contactsByCity;
+}
+function viewByState(addressBook) {
+  let contactsByState = new Map();
+  addressBook.filter((contact) =>
+    contactsByState.set(
+      contact.state,
+      searchByState(addressBook, contact.state)
+    )
+  );
+  return contactsByState;
+}
+
+console.log(viewByCity(addressBook));
+console.log(viewByState(addressBook));
 
 //UC10 Count By City or State
 console.log("UC10 :Count by City or State")
-  let countByCity = new Map();
+let countByCity = new Map();
 viewByCity(addressBook).forEach((value, key) =>
   countByCity.set(key, value.length)
 );
